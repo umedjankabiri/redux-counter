@@ -1,0 +1,21 @@
+.settingsWrapper {
+    display: flex;
+    flex-direction: column;
+}
+.values {
+    display: flex;
+    flex-direction: column;
+}
+.maxValue {
+
+}
+.startValue {
+
+}
+.buttonsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
