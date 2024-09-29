@@ -5,12 +5,12 @@ export const counterReducer = (state: any = 0, action: any) => {
                 ...state,
                 counter: action.payload.counter + 1
             }
-            case 'DECREMENT':
-                return {
-                    ...state,
-                    counter: action.payload.counter - 1
-                }
-                default:
-                    return state
+        case 'DECREMENT':
+            return {
+                ...state,
+                counter: action.payload.counter - 1
+            }
+        default:
+            return state
     }
 }
