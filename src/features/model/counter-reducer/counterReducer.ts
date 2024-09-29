@@ -10,5 +10,7 @@ export const counterReducer = (state: any = 0, action: any) => {
                     ...state,
                     counter: action.payload.counter - 1
                 }
+                default:
+                    return state
     }
 }
