@@ -2,17 +2,15 @@ import {
     clearCounter,
     decrementCounter,
     incrementCounter,
-    maxValue,
-    startValue
+    // maxValue,
+    // startValue
 } from "features/model/counterReducer/counterReducer.ts";
 
 type IncrementCounterActionProps = ReturnType<typeof incrementCounter>;
 type DecrementCounterActionProps = ReturnType<typeof decrementCounter>;
-type StartValueActionProps = ReturnType<typeof startValue>;
-type MaxValueActionProps = ReturnType<typeof maxValue>;
 type ClearCounterActionProps = ReturnType<typeof clearCounter>;
-export type ActionProps = IncrementCounterActionProps
+export type CounterActionProps = IncrementCounterActionProps
     | DecrementCounterActionProps
-    | StartValueActionProps
-    | MaxValueActionProps
+    // | StartValueActionProps
+    // | MaxValueActionProps
     | ClearCounterActionProps
