@@ -29,6 +29,11 @@ export const counterReducer = (state: CounterProps = initialState, action: Actio
                 ...state,
                 maxValue: action.payload.maxValue
             }
+        case "CLEAR-COUNTER":
+            return {
+                ...state,
+                counter: action.payload.clearCounter = state.startValue
+            }
         default:
             return state
     }
@@ -42,3 +47,5 @@ export const startValue = (startValue: number) =>
     ({type: "START-VALUE", payload: {startValue: startValue}}) as const
 export const maxValue = (maxValue: number) =>
     ({type: "MAX-VALUE", payload: {maxValue: maxValue}}) as const
+export const clearCounter = (clearCounter: number) =>
+    ({type: "CLEAR-COUNTER" as const, payload: {clearCounter: clearCounter}})
