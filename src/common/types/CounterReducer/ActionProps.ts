@@ -1,4 +1,5 @@
 import {
+    clearCounter,
     decrementCounter,
     incrementCounter,
     maxValue,
@@ -9,7 +10,9 @@ type IncrementCounterActionProps = ReturnType<typeof incrementCounter>;
 type DecrementCounterActionProps = ReturnType<typeof decrementCounter>;
 type StartValueActionProps = ReturnType<typeof startValue>;
 type MaxValueActionProps = ReturnType<typeof maxValue>;
+type ClearCounterActionProps = ReturnType<typeof clearCounter>;
 export type ActionProps = IncrementCounterActionProps
     | DecrementCounterActionProps
     | StartValueActionProps
-    | MaxValueActionProps;
+    | MaxValueActionProps
+    | ClearCounterActionProps
