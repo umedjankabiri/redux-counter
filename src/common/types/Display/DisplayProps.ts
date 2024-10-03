@@ -1,4 +1,6 @@
+import {ReactNode} from "react";
+
 export type DisplayProps = {
     className?: string;
-    showCounter: number;
+    children: ReactNode;
 }
