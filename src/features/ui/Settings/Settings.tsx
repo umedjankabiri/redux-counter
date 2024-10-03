@@ -12,18 +12,16 @@ export const Settings: FC<SettingsProps> = () => {
             <div className={stl.values}>
                 <div className={stl.maxValue}>
                     <span>Enter max value: </span>
-                    <EnterValue value={defaultValue} onChange={() => {
-                    }}/>
+                    <EnterValue className={stl.enterValue} value={defaultValue} onChange={() => {}}/>
                 </div>
                 <div className={stl.startValue}>
                     <span>Enter start value: </span>
-                    <EnterValue value={defaultValue} onChange={() => {
-                    }}/>
+                    <EnterValue className={stl.enterValue} value={defaultValue} onChange={() => {}}/>
                 </div>
             </div>
             <div className={stl.buttonsWrapper}>
-                <Button>Enter</Button>
-                <Button>Clear</Button>
+                <Button className={stl.enter}>Enter</Button>
+                <Button className={stl.clear}>Reset</Button>
             </div>
         </div>
     )
