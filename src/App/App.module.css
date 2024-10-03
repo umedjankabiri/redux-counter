@@ -1,0 +1,30 @@
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+
+    height: 100vh;
+    width: 100vw;
+}
+.navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    width: 100px;
+    height: 60px;
+    border-radius: 5px;
+    background: #210a47;
+}
+.activeLink {
+    color: #7fb8f1;
+    text-decoration: underline;
+}
+.link {
+    color: #fff;
+    text-decoration: none;
+}
