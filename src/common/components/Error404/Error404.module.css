@@ -5,14 +5,14 @@
     justify-content: center;
 
     width: 1200px;
-    height: 400px;
+    height: 350px;
     border: 5px solid red;
     border-radius: 10px;
 
     font-weight: bold;
     font-size: 42px;
     color: #210a47;
-    background: #ffffff;
+    background: #c6c6c6;
 }
 .path {
     color: #003db2;
