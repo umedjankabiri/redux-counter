@@ -1,12 +1,12 @@
 import {SettingsProps} from "common/types/SettingsReducer/SettingsProps.ts";
 import {SettingsActionProps} from "common/types/SettingsReducer/SettingsActionProps.ts";
 
-const initialState: SettingsProps = {
+const initialSettingsState: SettingsProps = {
     startValue: 0,
     maxValue: 0
 }
 
-export const settingsReducer = (state: SettingsProps = initialState, action: SettingsActionProps): SettingsProps => {
+export const settingsReducer = (state: SettingsProps = initialSettingsState, action: SettingsActionProps): SettingsProps => {
     switch (action.type) {
         case "START-VALUE":
             return {
@@ -18,10 +18,20 @@ export const settingsReducer = (state: SettingsProps = initialState, action: Set
                 ...state,
                 maxValue: action.payload.maxValue
             }
+        case "RESET-VALUES":
+            return {
+                ...state,
+                startValue: action.payload.resetValue,
+                maxValue: action.payload.resetValue,
+            }
+        default:
+            return state
     }
 }
 
-export const startValue = (startValue: number) =>
+export const startValueAC = (startValue: number) =>
     ({type: "START-VALUE", payload: {startValue: startValue}}) as const
-export const maxValue = (maxValue: number) =>
+export const maxValueAC = (maxValue: number) =>
     ({type: "MAX-VALUE", payload: {maxValue: maxValue}}) as const
+export const resetValueAC = (resetValue: number) =>
+    ({type: "RESET-VALUES", payload: {resetValue: resetValue}}) as const
