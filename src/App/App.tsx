@@ -1,10 +1,10 @@
 import 'App/App.module.css'
 import stl from "App/App.module.css"
 import {Navigate, NavLink, Route, Routes} from "react-router-dom";
+import {PATH} from "common/utils/path.ts";
 import {Settings} from "features/ui/Settings/Settings.tsx";
 import {Counter} from "features/ui/Counter/Counter.tsx";
 import {Error404} from "common/components/Error404/Error404.tsx";
-import {PATH} from "common/utils/path.ts";
 
 function App() {
 
