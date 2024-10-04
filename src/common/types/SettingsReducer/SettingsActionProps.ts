@@ -1,7 +1,7 @@
-import {maxValueAC, resetValueAC, startValueAC} from "features/model/settingsReducer/settingsReducer.ts";
+import {setMaxValueAC, resetValueAC, setStartValueAC} from "features/model/settingsReducer/settingsReducer.ts";
 
-type StartValueActionProps = ReturnType<typeof startValueAC>;
-type MaxValueActionProps = ReturnType<typeof maxValueAC>;
+type StartValueActionProps = ReturnType<typeof setStartValueAC>;
+type MaxValueActionProps = ReturnType<typeof setMaxValueAC>;
 type ResetValuesActionProps = ReturnType<typeof resetValueAC>;
 export type SettingsActionProps = | StartValueActionProps
     | MaxValueActionProps
