@@ -1,11 +1,11 @@
 import {CounterProps} from "common/types/CounterReducer/CounterProps.ts";
 import {CounterActionProps} from "common/types/CounterReducer/CounterActionProps.ts";
 
-const initialState: CounterProps = {
+const initialCounterState: CounterProps = {
     counter: 0
 }
 
-export const counterReducer = (state: CounterProps = initialState, action: CounterActionProps): CounterProps => {
+export const counterReducer = (state: CounterProps = initialCounterState, action: CounterActionProps): CounterProps => {
     switch (action.type) {
         case "INCREMENT":
             return {
@@ -20,16 +20,21 @@ export const counterReducer = (state: CounterProps = initialState, action: Count
         case "CLEAR-COUNTER":
             return {
                 ...state,
-                counter: action.payload.clearCounter = 0
+                counter: action.payload.clearCounter
+            }
+        case "START-VALUE":
+            return {
+                ...state,
+                counter: action.payload.startValue
             }
         default:
             return state
     }
 }
 
-export const incrementCounter = (counter: number) =>
+export const incrementCounterAC = (counter: number) =>
     ({type: "INCREMENT", payload: {counter: counter}}) as const
-export const decrementCounter = (counter: number) =>
+export const decrementCounterAC = (counter: number) =>
     ({type: "DECREMENT", payload: {counter: counter}}) as const
-export const clearCounter = (clearCounter: number) =>
-    ({type: "CLEAR-COUNTER" as const, payload: {clearCounter: clearCounter}})
+export const clearCounterAC = (clearCounter: number) =>
+    ({type: "CLEAR-COUNTER", payload: {clearCounter: clearCounter}}) as const
