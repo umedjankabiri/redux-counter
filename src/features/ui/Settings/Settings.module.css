@@ -10,13 +10,15 @@
     border-radius: 10px;
     background: #210a47;
 }
-.values {
+
+.valuesWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 50px;
 }
+
 .maxValue, .startValue {
     display: flex;
     flex-direction: row;
