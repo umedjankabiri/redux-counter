@@ -32,9 +32,9 @@ export const counterReducer = (state: CounterProps = initialCounterState, action
     }
 }
 
-export const incrementCounterAC = (counter: number) =>
+export const setIncrementCounterAC = (counter: number) =>
     ({type: "INCREMENT", payload: {counter: counter}}) as const
-export const decrementCounterAC = (counter: number) =>
+export const setDecrementCounterAC = (counter: number) =>
     ({type: "DECREMENT", payload: {counter: counter}}) as const
 export const clearCounterAC = (clearCounter: number) =>
     ({type: "CLEAR-COUNTER", payload: {clearCounter: clearCounter}}) as const
