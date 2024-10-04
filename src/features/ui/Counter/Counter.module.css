@@ -14,10 +14,14 @@
     margin: 0 auto;
 }
 
-.display {
+.display, .lastRedDigit {
     font-weight: bold;
     font-size: 72px;
     color: lightgray;
+}
+
+.lastRedDigit {
+    color: red;
 }
 
 .displayWrapper {
