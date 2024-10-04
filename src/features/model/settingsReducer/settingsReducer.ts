@@ -29,9 +29,9 @@ export const settingsReducer = (state: SettingsProps = initialSettingsState, act
     }
 }
 
-export const startValueAC = (startValue: number) =>
+export const setStartValueAC = (startValue: number) =>
     ({type: "START-VALUE", payload: {startValue: startValue}}) as const
-export const maxValueAC = (maxValue: number) =>
+export const setMaxValueAC = (maxValue: number) =>
     ({type: "MAX-VALUE", payload: {maxValue: maxValue}}) as const
 export const resetValueAC = (resetValue: number) =>
     ({type: "RESET-VALUES", payload: {resetValue: resetValue}}) as const
