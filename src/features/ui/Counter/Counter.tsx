@@ -21,9 +21,6 @@ export const Counter: FC = () => {
     const dispatch = useRootDispatch()
     const navigate = useNavigate()
 
-    localStorage.getItem("counter")
-    localStorage.setItem("counter", JSON.stringify(counter));
-
     const onClickPlusHandler = () =>
         dispatch(setIncrementCounterAC(counter))
     const onClickMinusHandler = () =>
