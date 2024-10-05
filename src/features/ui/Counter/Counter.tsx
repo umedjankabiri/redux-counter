@@ -14,12 +14,15 @@ import {useNavigate} from "react-router-dom";
 import {PATH} from "common/utils/path.ts";
 
 export const Counter: FC = () => {
+    const zero = 0
+
     const {counter} = useRootSelector(selectCounter)
     const {startValue, maxValue} = useRootSelector(selectSettings)
     const dispatch = useRootDispatch()
     const navigate = useNavigate()
 
-    const zero = 0
+    localStorage.getItem("counter")
+    localStorage.setItem("counter", JSON.stringify(counter));
 
     const onClickPlusHandler = () =>
         dispatch(setIncrementCounterAC(counter))
@@ -28,7 +31,6 @@ export const Counter: FC = () => {
     const onClickClearHandler = () =>
         dispatch(clearCounterAC(startValue))
     const backHandler = () => navigate(PATH.SETTINGS)
-
 
     const displayStyles = counter !== zero && counter == maxValue ? stl.lastRedDigit : stl.display
     const disablePlus = maxValue == counter
