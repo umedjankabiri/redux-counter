@@ -5,7 +5,7 @@ import {Button} from "common/components/Button/Button.tsx";
 import {useRootSelector} from "common/hooks/useRootSelector.ts";
 import {selectError, selectMessage, selectSettings} from "common/selectors/selectors.ts";
 import {useRootDispatch} from "common/hooks/useRootDispatch.ts";
-import {setMaxValueAC, resetValueAC, setStartValueAC} from "features/model/settingsReducer/settingsReducer.ts";
+import {resetValueAC, setMaxValueAC, setStartValueAC} from "features/model/settingsReducer/settingsReducer.ts";
 import {clearCounterAC} from "features/model/counterReducer/counterReducer.ts";
 import {useNavigate} from "react-router-dom";
 import {PATH} from "common/utils/path.ts";
@@ -13,14 +13,19 @@ import {setMessageAC} from "features/model/messagesReducer/messageReducer.ts";
 import {clearErrorAC, setErrorAC} from "features/model/errorsReducer/errorReducer.ts";
 
 export const Settings: FC = () => {
+    const zero = 0;
+    const minusOne = -1;
+
     const {startValue, maxValue} = useRootSelector(selectSettings)
     const {error} = useRootSelector(selectError)
     const {message} = useRootSelector(selectMessage)
     const dispatch = useRootDispatch()
     const navigate = useNavigate()
 
-    const zero = 0;
-    const minusOne = -1;
+    localStorage.getItem("maxValue")
+    localStorage.getItem("startValue")
+    localStorage.setItem("maxValue", JSON.stringify(maxValue));
+    localStorage.setItem("startValue", startValue.toString());
 
     const onChangeMaxValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const tempMaxValue = +event.currentTarget.value
@@ -65,25 +70,38 @@ export const Settings: FC = () => {
         dispatch(resetValueAC(zero))
         dispatch(clearCounterAC(zero))
         dispatch(clearErrorAC())
+        localStorage.clear()
     }
 
     const errorMessageStyles = !!error ? stl.error : stl.message
-    const disableEnter = startValue == zero && maxValue == zero
-    const disableReset = startValue == zero && maxValue == zero
+    const disableMaxValue = maxValue == minusOne || maxValue < startValue
+    const disableStartValue = startValue == minusOne || startValue > maxValue
+    const disableEnter = !!error || maxValue == zero && startValue == zero
+    const disableReset = !error && maxValue == zero && startValue == zero
 
     return (
         <div className={stl.settingsWrapper}>
             <div className={stl.errorMessageWrapper}>
                 <span className={errorMessageStyles}>{error || message}</span>
             </div>
-            <div className={stl.valuesWrapper}>
+            <div className={stl.inputsWrapper}>
                 <div className={stl.maxValue}>
                     <span>Enter max value: </span>
-                    <EnterValue className={stl.enterValue} value={maxValue} onChange={onChangeMaxValueHandler}/>
+                    <EnterValue className={!!error ? stl.enterWithError : stl.enterValue}
+                                min={minusOne}
+                                disabled={disableMaxValue}
+                                value={maxValue}
+                                onChange={onChangeMaxValueHandler}
+                    />
                 </div>
                 <div className={stl.startValue}>
                     <span>Enter start value: </span>
-                    <EnterValue className={stl.enterValue} value={startValue} onChange={onChangeStartValueHandler}/>
+                    <EnterValue className={!!error ? stl.enterWithError : stl.enterValue}
+                                min={minusOne}
+                                disabled={disableStartValue}
+                                value={startValue}
+                                onChange={onChangeStartValueHandler}
+                    />
                 </div>
             </div>
             <div className={stl.buttonsWrapper}>
