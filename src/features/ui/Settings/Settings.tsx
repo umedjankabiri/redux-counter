@@ -1,9 +1,9 @@
-import {ChangeEvent, FC} from "react";
+import {ChangeEvent, FC, useEffect} from "react";
 import stl from "./Settings.module.css"
 import {EnterValue} from "common/components/EnterValue/EnterValue.tsx";
 import {Button} from "common/components/Button/Button.tsx";
 import {useRootSelector} from "common/hooks/useRootSelector.ts";
-import {selectError, selectMessage, selectSettings} from "common/selectors/selectors.ts";
+import {selectCounter, selectError, selectMessage, selectSettings} from "common/selectors/selectors.ts";
 import {useRootDispatch} from "common/hooks/useRootDispatch.ts";
 import {resetValueAC, setMaxValueAC, setStartValueAC} from "features/model/settingsReducer/settingsReducer.ts";
 import {clearCounterAC} from "features/model/counterReducer/counterReducer.ts";
@@ -17,20 +17,37 @@ export const Settings: FC = () => {
     const minusOne = -1;
 
     const {startValue, maxValue} = useRootSelector(selectSettings)
+    const {counter} = useRootSelector(selectCounter)
     const {error} = useRootSelector(selectError)
     const {message} = useRootSelector(selectMessage)
     const dispatch = useRootDispatch()
     const navigate = useNavigate()
 
-    localStorage.getItem("maxValue")
-    localStorage.getItem("startValue")
     localStorage.setItem("maxValue", JSON.stringify(maxValue));
     localStorage.setItem("startValue", startValue.toString());
+    localStorage.setItem("counter", JSON.stringify(counter));
+
+    useEffect(() => {
+        if (maxValue >= 0)
+            dispatch(setMessageAC(`Input max value and press 'Enter'`))
+    }, [maxValue]);
+    useEffect(() => {
+        const storedMaxValue = localStorage.getItem("maxValue")
+        const storedStartValue = localStorage.getItem("startValue")
+        const storedCounterValue = localStorage.getItem("CounterValue")
+        storedMaxValue && dispatch(setMaxValueAC(+storedMaxValue))
+        storedStartValue && dispatch(setMaxValueAC(+storedStartValue))
+        storedCounterValue && dispatch(setMaxValueAC(+storedCounterValue))
+    }, [dispatch]);
+    useEffect(() => {
+        localStorage.setItem("maxValue", JSON.stringify(maxValue));
+        localStorage.setItem("startValue", startValue.toString());
+        localStorage.setItem("counter", JSON.stringify(counter));
+    }, [maxValue, startValue, counter]);
 
     const onChangeMaxValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const tempMaxValue = +event.currentTarget.value
-        if (tempMaxValue)
-            dispatch(setMessageAC(`Input max value and press 'Enter'`))
+
         if (tempMaxValue == minusOne)
             dispatch(setErrorAC(`max value cannot be less then ${zero}`))
         else if (tempMaxValue == startValue)
@@ -48,8 +65,7 @@ export const Settings: FC = () => {
     }
     const onChangeStartValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const tempStartValue = +event.currentTarget.value
-        if (tempStartValue)
-            dispatch(setMessageAC(`Input max value and press 'Enter'`))
+
         if (tempStartValue == minusOne)
             dispatch(setErrorAC(`start value cannot be less then ${zero}`))
         else if (tempStartValue == maxValue)
