@@ -1,4 +1,8 @@
-import {clearCounterAC, setDecrementCounterAC, setIncrementCounterAC,} from "features/model/counterReducer/counterReducer.ts";
+import {
+    clearCounterAC,
+    setDecrementCounterAC,
+    setIncrementCounterAC,
+} from "features/model/counterReducer/counterReducer.ts";
 import {SettingsActionProps} from "common/types/SettingsReducer/SettingsActionProps.ts";
 
 type IncrementCounterActionProps = ReturnType<typeof setIncrementCounterAC>;
