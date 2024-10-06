@@ -6,4 +6,3 @@ type ResetValuesActionProps = ReturnType<typeof resetValueAC>;
 export type SettingsActionProps = | StartValueActionProps
     | MaxValueActionProps
     | ResetValuesActionProps
-
