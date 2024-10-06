@@ -1,9 +1,10 @@
-import {combineReducers, legacy_createStore} from "redux";
+import {combineReducers} from "redux";
 import {counterReducer} from "features/model/counterReducer/counterReducer.ts";
 import {settingsReducer} from "features/model/settingsReducer/settingsReducer.ts";
 import {errorReducer} from "features/model/errorsReducer/errorReducer.ts";
 import {messageReducer} from "features/model/messagesReducer/messageReducer.ts";
 import {loadState, saveState} from "common/utils/localStorage.ts";
+import {configureStore} from "@reduxjs/toolkit";
 
 const rootReducer = combineReducers({
     counter: counterReducer,
@@ -12,19 +13,25 @@ const rootReducer = combineReducers({
     messages: messageReducer
 })
 
-export const store = legacy_createStore(rootReducer, loadState());
+const preloadedState = loadState();
+
+export const store = configureStore({
+    reducer: rootReducer,
+    preloadedState
+});
 
 store.subscribe(() => {
+    const state = store.getState()
     saveState({
-        counter: store.getState().counter,
+        counter: state.counter,
         settings: {
-            startValue: store.getState().settings.startValue,
-            maxValue: store.getState().settings.maxValue
+            startValue: state.settings.startValue,
+            maxValue: state.settings.maxValue
         },
-        error: store.getState().error,
-        messages: store.getState().messages
+        error: state.error,
+        messages: state.messages
     })
 })
 
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof rootReducer>
 export type RootDispatch = typeof store.dispatch
