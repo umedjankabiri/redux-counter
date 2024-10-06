@@ -3,7 +3,7 @@ import {counterReducer} from "features/model/counterReducer/counterReducer.ts";
 import {settingsReducer} from "features/model/settingsReducer/settingsReducer.ts";
 import {errorReducer} from "features/model/errorsReducer/errorReducer.ts";
 import {messageReducer} from "features/model/messagesReducer/messageReducer.ts";
-import {loadState, saveState} from "common/types/localStorage.ts";
+import {loadState, saveState} from "common/utils/localStorage.ts";
 
 const rootReducer = combineReducers({
     counter: counterReducer,
