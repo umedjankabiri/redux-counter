@@ -16,7 +16,7 @@ import {PATH} from "common/utils/path.ts";
 export const Counter: FC = () => {
     const zero = 0
 
-    const {counter} = useRootSelector(selectCounter)
+    const counter = useRootSelector(selectCounter).counter
     const {startValue, maxValue} = useRootSelector(selectSettings)
     const dispatch = useRootDispatch()
     const navigate = useNavigate()
